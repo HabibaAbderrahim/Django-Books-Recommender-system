@@ -1,0 +1,87 @@
+{% extends 'base.html '%}
+{% block body %}
+
+		<main class="content">
+			<div class="single">
+
+				
+
+				<section class="movie">
+					<img src="{{ object.image.url }}">
+					<ul>
+						<li>{{ object }}</li>
+						<li>{{ object.description }}</li>
+						<li><a href="genre.html">{{ object.category}}</li>
+						<li><a href="cast.html">{{ object.author }}</a>
+						<li>{{ object.price }}$ </li>
+						<li>{{ object.views_count }}</li>
+					</ul>
+				</section>
+				
+				
+
+					
+
+				<section class="related">
+					<h3>Related Books </h3>
+
+					{%for movie in related_movies %}
+					  <div class="relatemovie"  class="flex-container">
+						
+						<a href="#"><img src="{{movie.image.url}}"></a>
+						<a href="#"><span class="relatedname">{{movie.title}}</span></a>
+					  </div>
+					{% endfor %}
+					
+					
+					
+
+				</section>
+			
+            
+				<section class="related">
+					<h3>Recommanded Similar Books</h3>
+
+				{%for top in tops %}
+					  <div class="relatemovie flex-container">
+						 <a href="#"><img src="{{top.top1.image.url}}"></a>
+						<a href="#"><span class="relatedname">{{top.top1.title}}</span></a>
+						
+					  </div>
+					  <div class="relatemovie flex-container">
+						
+					   <a href="#"><img src="{{top.top2.image.url}}"></a>
+					   <a href="#"><span class="relatedname">{{top.top2.title}}</span></a>
+					  
+					 </div>
+					 <div class="relatemovie flex-container">
+						
+					   <a href="#"><img src="{{top.top3.image.url}}"></a>
+					   <a href="#"><span class="relatedname">{{top.top3.title}}</span></a>
+					 </div>
+					{% endfor %}
+					</section>
+
+				
+				
+				<main class="content">
+					<section class="centered">
+						<h3>Rate Book here : </h3>
+						<div class="contact">
+							<form id="myForm" action="#" method="POST">
+								
+								<textarea id="message" name="message"></textarea>
+		
+								<input type="submit" name="submit" value="Comment">
+							</form>
+		
+							
+						</div>
+					</div>
+				</section>
+		
+			</main>
+			
+				
+{% endblock body %}
+		

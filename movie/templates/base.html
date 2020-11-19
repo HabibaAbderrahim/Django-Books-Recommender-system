@@ -1,0 +1,273 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Books</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+	<!-- Link Swiper's CSS -->
+	<link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	<link rel="stylesheet" href="{% static 'css/vid.css' %}">
+
+	<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+	<script src="{% static 'js/script.js' %}"></script>
+
+
+	<!-- Demo styles -->
+	
+</head>
+<body>
+	<div class="wrapper">
+
+		<header class="header">
+			<figure class="logo"><a href="index.html"><img src="{% static 'img/try_number_1-removebg-preview.png' %}" alt="Logo"></figure></a>
+			<nav class="menu">
+				<ul>
+					<li><a href="{% url 'movies:movie_list' %}">Home</a></li>
+					<li><a href="{% url 'login:send_email' %}">Register</a></li>
+					
+
+
+					<li>
+						{% if request.user.is_authenticated %}
+						   
+							<a href="{% url 'login:logout' %}">Logout</a>
+						{% else %}
+							 <a href="{% url 'login:login' %}">Login</a>
+						{% endif %}
+					</li>
+					
+					
+					
+					<li><a>Genres</a>
+						<ul>
+							
+							<li><a href="{% url 'movies:movie_category' 'computer'  %}">computer</a></li>
+							<li><a href="{% url 'movies:movie_category' 'Fantasy' %}">Fantasy</a></li>
+							<li><a href="{% url 'movies:movie_category' 'romance' %}">Romance</a></li>
+							<li><a href="{% url 'movies:movie_category' 'horror' %}">Horror</a></li>
+						</ul>
+					</li>
+					
+					<li><a>Language</a>
+						<ul>
+							<li><a href="{% url 'movies:movie_language' 'english' %}">English</a></li>
+							<li><a href="{% url 'movies:movie_language' 'germanie' %}">German</a></li>
+						</ul>
+					</li>
+					
+				</ul>
+			</nav>
+			<form class="search" method="GET" action="{% url 'movies:movie_search' %}">
+				<input type="text" name="query" value="{{ request.GET.q }}"  class="searchfield" placeholder="Search...">
+				<input type="submit" value="" class="searchsubmit">
+			</form>
+
+			<div class="toggle"><img src="img/menu.svg"></div>
+		</header>
+		<!-- Swiper -->
+		<!-- <div class="homeslider">
+			<div class="swiper-container swiper-container-horizontal swiper-container-fade">
+
+				<div class="swiper-wrapper">
+					
+					
+					  <div class="swiper-slide">
+						 
+						 <img src="{% static 'img/inline_image_preview.jpg' %}" alt="Logo">
+						   
+						
+					   </div>
+					
+				</div> -->
+				<center>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="tm-video-container">
+							<video id="tm-welcome-video" class="tm-welcome-video" autoplay loop muted="" width="100%">
+								<source src="../../media/movies/openbook.mp4" type="video/mp4"> Your browser does not support the video tag.
+								</video>
+								<div id="tm-video-loader"></div>
+								<div id="tm-video-text-overlay" class="tm-video-text-overlay d-none">
+									<h1>
+										<div id="rotate" class="tm-video-text">
+											
+											<div>We Book</div>
+											<div>We Recommand</div>
+											
+										</div>
+									</h1>
+								</div>
+		
+							</div>
+						</div>
+					</div>
+				</div>
+			</center>
+				<!-- Add Pagination -->
+				
+			
+			</div>
+		</div>
+        
+		{% block body %}
+		   
+
+		
+		{% endblock body %}
+
+		<footer class="footer">
+			
+			<div class="footermenu">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="contact.html">Contact</a></li>
+					<li><a href="terms.html">Terms and conditions</a></li>
+				</ul>
+			</div>
+			<div class="tags">
+				<ul>
+					<li>Watch Free Movies Trailers</li>
+					<li>Movie Trailers</li>
+					<li>English Subtitled Movies Trailers</li>
+					<li>Latest Movies Trailers</li>
+					<li>New Movies Trailers</li>
+
+				</ul>
+			</div>
+
+		</footer>
+
+		<!-- Swiper JS -->
+		<script src="js/swiper.min.js"></script>
+
+		<!-- Initialize Swiper -->
+		<script>
+			$(document).ready(function(){
+
+
+				var swiper = new Swiper('.homeslider > .swiper-container', {
+					pagination: '.swiper-pagination',
+					paginationClickable: true,
+					preventClicks:false,
+					preventClicksPropagation:false,
+					effect:'fade',
+					breakpoints: {
+						320: {
+							height:200
+						},
+
+						480: {
+							height:300
+						},
+
+						768: {
+							height:400
+						},
+						1024: {
+							height:500
+						}
+					}
+				});
+
+				var recentswiper = new Swiper('.recentslider > .swiper-container', {
+					nextButton: '.recent-next',
+					prevButton: '.recent-prev',
+					slidesPerView: 8,
+					paginationClickable: true,
+					preventClicks:false,
+					preventClicksPropagation:false,
+					spaceBetween: 10,
+					breakpoints: {
+						320: {
+							slidesPerView: 3,
+							spaceBetween: 5
+						},
+
+						480: {
+							slidesPerView: 3,
+							spaceBetween: 5
+						},
+
+						768: {
+							slidesPerView: 5,
+							spaceBetween: 5
+						},
+						1024: {
+							slidesPerView: 6,
+							spaceBetween: 10
+						}
+					}
+				});
+
+				var mostswiper = new Swiper('.mostslider > .swiper-container', {
+					nextButton: '.most-next',
+					prevButton: '.most-prev',
+					slidesPerView: 8,
+					paginationClickable: true,
+					preventClicks:false,
+					preventClicksPropagation:false,
+					spaceBetween: 10,
+					breakpoints: {
+						320: {
+							slidesPerView: 3,
+							spaceBetween: 5
+						},
+
+						480: {
+							slidesPerView: 3,
+							spaceBetween: 5
+						},
+
+						768: {
+							slidesPerView: 5,
+							spaceBetween: 5
+						},
+						1024: {
+							slidesPerView: 6,
+							spaceBetween: 10
+						}
+					}
+				});
+
+				var topswiper = new Swiper('.topslider > .swiper-container', {
+					nextButton: '.top-next',
+					prevButton: '.top-prev',
+					slidesPerView: 8,
+					paginationClickable: true,
+					preventClicks:false,
+					preventClicksPropagation:false,
+					spaceBetween: 10,
+					breakpoints: {
+						320: {
+							slidesPerView: 3,
+							spaceBetween: 5
+						},
+
+						480: {
+							slidesPerView: 3,
+							spaceBetween: 5
+						},
+
+						768: {
+							slidesPerView: 5,
+							spaceBetween: 5
+						},
+						1024: {
+							slidesPerView: 6,
+							spaceBetween: 10
+						}
+					}
+				});
+
+			});
+
+			
+		</script>
+
+
+	</div>
+</body>
+</html>
