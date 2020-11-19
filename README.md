@@ -47,4 +47,4 @@ cmd : python manage.py inspectdb > models.py<br>
 NB : via ce lien vous trouvez le code de recommandation contenat Top 3 book similaires <br>
 (l'idée est simple j'ai traité un algorithme de recommandation de top 3 books similaire par la suite je l'ai stocké les resultat dans une base nomé Top (par la suite j'ai 
 appliqué l'ORM comme noté ci dessus).<br>
-<h2>lien :</h2>
+<h2>lien :</h2> https://github.com/HabibaAbderrahim/recomandation-system-python
